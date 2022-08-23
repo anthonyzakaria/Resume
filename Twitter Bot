@@ -1,0 +1,41 @@
+import tweepy
+from time import sleep
+
+API_key = "HflYrzOS0ePjha0QMLGfGmirC"
+API_secret = "G1l9BxggG2C6Ec7Warzgi7qcyHJsG6Iny03SbqzWTwvfo7fzCv"
+access_key = "1557499076517699587-4LK4AYekG7Qya9wP1rwr3IKm3z9HsI"
+access_secret = "h3spvvoQhgp4xN17i21qhHNncNML9oCqMQjloQUEAgHux"
+bearer_token = "AAAAAAAAAAAAAAAAAAAAAN9TfwEAAAAArspcAgCL1ClOaNX7Ifd6AITuxwY%3DwUjlXLYD6JTgG136Mv1gCajwT6ZkpfnUHLIv7tId5q372eKyU1"
+
+auth = tweepy.OAuthHandler(API_key, API_secret)
+auth.set_access_token(access_key, access_secret)
+api = tweepy.API(auth,wait_on_rate_limit=True)
+
+search= "#mufc"
+numTweets=500
+
+FILE_NAME = 'last_seen_id.txt'
+
+glazersout="#GlazersOut #GlazersSellNow #GetOutGlazers #SirJimRatcliffeIn"
+
+
+
+def reply_to_tweets():
+    print('retrieving and replying to tweets...', flush=True)
+    
+
+	
+    
+    timeline_tweets = api.user_timeline(screen_name='ManUtd',tweet_mode='extended')
+    
+
+    for timeline_tweet in reversed(timeline_tweets):
+        print(str(timeline_tweet.id) + ' - ' + timeline_tweet.full_text, flush=True)
+            
+            
+        api.update_status(glazersout, in_reply_to_status_id = timeline_tweet.id , auto_populate_reply_metadata=True)
+
+while True:
+
+    reply_to_tweets()
+    time.sleep(15)
