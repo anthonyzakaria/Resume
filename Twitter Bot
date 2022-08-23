@@ -12,9 +12,6 @@ auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth,wait_on_rate_limit=True)
 
 search= "#mufc"
-numTweets=500
-
-FILE_NAME = 'last_seen_id.txt'
 
 glazersout="#GlazersOut #GlazersSellNow #GetOutGlazers #SirJimRatcliffeIn"
 
